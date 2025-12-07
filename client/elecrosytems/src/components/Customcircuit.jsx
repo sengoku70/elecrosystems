@@ -68,6 +68,7 @@ export default function CustomSystemsPage() {
   const [notes, setNotes] = useState(templates["suburb-house"].note);
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState(null);
+  
 
   // helpers to lookup products
   const solarProduct = useMemo(() => solarCatalog.find((p) => p.id === selectedSolar), [selectedSolar]);
@@ -140,10 +141,13 @@ export default function CustomSystemsPage() {
 
     try {
       // Send to backend - adapt endpoint as needed
-      console.log("submitting payload:", payload);
+      const token = localStorage.getItem("token");
+      console.log("token:",token);
       const res = await fetch(`${API_URL}/payload/saveCustomSystem`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+         },
         body: JSON.stringify(payload),
       });
 
