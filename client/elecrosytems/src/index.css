@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+
+
+.scene {
+  width: 400px;
+  height: 300px;
+  perspective: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.panel {
+  width: 300px;
+  height: 220px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 20px;
+  backdrop-filter: blur(15px);
+  position: relative;
+  overflow: visible; /* allows cube to stick out */
+}
+
+.cube {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  width: 120px;
+  height: 120px;
+  transform-style: preserve-3d;
+  perspective: 2000px;
+  /* Position cube so half is inside, half outside */
+  transform:  rotateY(50deg) rotateX(30deg) rotateZ(30deg) translateZ(300px);
+  
+}
+
+.face {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+
+  border: 2px solid white;
+  /* backdrop-filter: blur(5px); */
+}
+
+/* Cube faces */
+.front  { transform: translateZ(60px); }
+.back   { transform: rotateY(180deg) translateZ(60px); }
+.left   { transform: rotateY(-90deg) translateZ(60px); }
+.right  { transform: rotateY(90deg) translateZ(60px); }
+.top    { transform: rotateX(90deg) translateZ(60px); }
+.bottom { transform: rotateX(-90deg) translateZ(60px); }
+
+/* Animation */
