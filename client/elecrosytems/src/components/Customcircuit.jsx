@@ -1,4 +1,6 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
+import { useLocation } from "react-router-dom";
+import "./community.css";
 
 // Custom Systems page
 // - lets user enter monthly usage (kWh)
@@ -12,6 +14,8 @@ import React, { useState, useMemo } from "react";
 export default function CustomSystemsPage() {
   // Sample product catalogs (you can extend or fetch from backend)
   const API_URL = "http://localhost:5000";
+  const location = useLocation();
+  
   const solarCatalog = [
     { id: "sp1", brand: "SunPower", model: "SunPower 410W", watt: 410, price: 230 },
     { id: "sp2", brand: "LG", model: "LG 370W", watt: 370, price: 190 },
@@ -69,6 +73,41 @@ export default function CustomSystemsPage() {
   const [submitting, setSubmitting] = useState(false);
   const [message, setMessage] = useState(null);
   
+  // Load system from community if passed via navigation state
+  useEffect(() => {
+    if (location.state?.loadedSystem) {
+      const system = location.state.loadedSystem;
+      
+      // Find the matching solar product ID
+      const solarId = solarCatalog.find(p => 
+        p.brand === system.selectedSolar.brand && 
+        p.model === system.selectedSolar.model
+      )?.id || solarCatalog[0].id;
+      
+      // Find the matching wind product ID
+      const windId = windCatalog.find(p => 
+        p.brand === system.selectedWind.brand && 
+        p.model === system.selectedWind.model
+      )?.id || windCatalog[0].id;
+
+      setMonthlyUsage(system.monthlyUsage);
+      setDesiredReduction(system.desiredReduction);
+      setSelectedSolar(solarId);
+      setSelectedWind(windId);
+      setAvgSunHours(system.avgSunHours);
+      setWindCapacityFactor(system.windCapacityFactor);
+      setSelectedTemplate(system.template);
+      setNotes(system.notes);
+      
+      // Calculate mixed solar share from the counts
+      if (system.plan === "mixed" && system.counts) {
+        const totalCount = system.counts.solarCount + system.counts.windCount;
+        if (totalCount > 0) {
+          setMixedSolarShare(Math.round((system.counts.solarCount / totalCount) * 100));
+        }
+      }
+    }
+  }, [location.state]);
 
   // helpers to lookup products
   const solarProduct = useMemo(() => solarCatalog.find((p) => p.id === selectedSolar), [selectedSolar]);
@@ -272,7 +311,7 @@ function PlanCard({ title, counts, costs, onSubmit, submitting }) {
         <div className="text-sm">Total estimate: <strong>₹{costs.total.toLocaleString()}</strong></div>
       </div>
 
-      <button onClick={onSubmit} disabled={submitting} className="mt-2 px-3 py-2 rounded border bg-black text-white w-full">
+      <button onClick={onSubmit} disabled={submitting} className="mt-2 px-3 py-2 view-details-btn rounded border bg-black text-white w-full">
         {submitting ? "Saving..." : "Choose this plan & Save"}
       </button>
     </div>

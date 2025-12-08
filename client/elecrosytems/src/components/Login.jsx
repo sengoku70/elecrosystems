@@ -63,7 +63,7 @@ const Login = ({ token,setToken, setProfile,profile }) => {
 
   return (
     
-  <div className="min-h-screen flex items-center justify-center bg-green-100 px-4">
+  <div className="h-screen hero flex items-center justify-center bg-green-100 px-4">
   <div className="backdrop-blur-xl bg-white/60 shadow-xl  p-10 w-full max-w-md border border-white/30">
     
     <h1 className="text-3xl font-bold text-center mb-6 tracking-wide">
@@ -84,13 +84,13 @@ const Login = ({ token,setToken, setProfile,profile }) => {
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-3 h-12 rounded-md border border-black/20 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black/40"
+          className="w-full p-3 h-12 border border-black/20 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black/40"
         />
 
 
         <button
           onClick={sign?signup:login}
-          className="w-full py-3 rounded-md bg-linear-to-r from-cyan-600 to-purple-600 text-white font-semibold hover:opacity-80 transition"
+          className="w-full py-3  text-white bg-black font-semibold hover:opacity-80 transition"
         >
           {sign?"signup":"Login"}
         </button>
@@ -110,17 +110,16 @@ const Login = ({ token,setToken, setProfile,profile }) => {
       </div>
     ) : (
       <div className="flex flex-col gap-4">
-        <button
-          onClick={getProfile}
-          className="w-full py-3 rounded-md bg-black text-white font-semibold hover:bg-black/80 transition"
-        >
-           Profile
-        </button>
+        <div className="mt-6 bg-white/50 p-4 rounded-md shadow-md border border-white/40">
+        <h2 className="text-xl font-semibold mb-2">User Profile</h2>
+        <p className="text-black/80">Username: {profile.username}</p>
+        <p className="text-black/80">User ID: {profile._id}</p>
+      </div>
 
         <NavLink to={"/"}
           onClick={logout}
 
-          className="w-full py-3 text-center rounded-md bg-red-600 text-white font-semibold hover:bg-red-700 transition"
+          className="w-full py-3 text-center  bg-red-600 text-white font-semibold hover:bg-red-700 transition"
         >
           Logout
         </NavLink>
@@ -131,13 +130,7 @@ const Login = ({ token,setToken, setProfile,profile }) => {
       <p className="mt-6 text-center text-black/70 font-medium">{message}</p>
     )}
 
-    {profile && (
-      <div className="mt-6 bg-white/50 p-4 rounded-md shadow-md border border-white/40">
-        <h2 className="text-xl font-semibold mb-2">User Profile</h2>
-        <p className="text-black/80">Username: {profile.username}</p>
-        <p className="text-black/80">User ID: {profile._id}</p>
-      </div>
-    )}
+    
   </div>
 </div>
 

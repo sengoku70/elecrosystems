@@ -23,6 +23,9 @@ const costsSchema = new mongoose.Schema({
 }, { _id: false });
 
 const customSystemSchema = new mongoose.Schema({
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
+  username: { type: String, required: true },
+  
   template: { type: String, required: true },  // suburb-house, country-house, etc.
 
   monthlyUsage: { type: Number, required: true },
@@ -44,8 +47,13 @@ const customSystemSchema = new mongoose.Schema({
   costs: { type: costsSchema, required: true },
 
   notes: String,
+  
+  systemImage: String, // URL to circuit diagram image
 
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now }
 });
+
+module.exports = mongoose.model("CustomSystem", customSystemSchema);
 
 module.exports = mongoose.model("CustomSystem", customSystemSchema);

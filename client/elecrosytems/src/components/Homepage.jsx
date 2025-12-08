@@ -4,6 +4,11 @@ import gsap from 'gsap';
 import image from "../assets/image/image.png"
 import logo from "../assets/image/untitled.png"
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { BsInstagram } from "react-icons/bs";
+import { GrLinkedinOption } from "react-icons/gr";
+import { ImGithub } from "react-icons/im";
+import { NavLink } from 'react-router-dom';
+
 export default function Homepage() {
 
 useEffect(() => {
@@ -16,9 +21,9 @@ useEffect(() => {
         //markers: true,
         scrub:2,
       },
-      scaleX:1.3,
-      scaleY:1.3,
-      marginLeft:"-60%"
+      scaleX:.9,
+      scaleY:.9,
+      marginLeft:"-55%"
     });
     gsap.to(".herotext", {
       scrollTrigger: {
@@ -83,7 +88,7 @@ useEffect(() => {
 
   return (
     
-    <div className="homepage bg-blue-100 duration-500  p-6 w-screen">
+    <div className="homepage bg-blue-100 duration-500  w-screen">
     
     <div className='hero h-screen w-full text-[130px] text-center'>
       
@@ -162,32 +167,67 @@ useEffect(() => {
     </div>
   </div>
 
-    <div className=''>
-        <div className='hero text-[40px] my-[100px] w-7/10 mx-auto'>SEE WAHT COMMUNITY HAS TO OFFER</div>
-        {/* <img src="" alt="" /> */}
+    <div className=' flex flex-row justify-between items-center mt-[150px] mb-[150px] w-7/10 mx-auto'>
+        <div className='hero text-[40px] my-[100px] w-5/10 mx-auto'>SEE WAHT COMMUNITY HAS TO OFFER <br/> <NavLink className="view-details-btn text-[15px]">Go to Community Page</NavLink></div>
       
+        <div className="h-[500px] w-[500px] bg-contain border-white/60 border-[40px] shadow-2xl bg-no-repeat bg-[url('src/assets/image/Gemini_Generated_Image_ks59lkks59lkks59.png')] "></div>
+            
     </div>
 
+  
 
-    <footer className='mt-auto bg-black h-[800px]'>
+  
+    <footer className="hero bg-black text-white mt-50 py-10 px-6">
+    <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
 
+    {/* Logo + Description */}
+    <div>
+      <h2 className="text-2xl font-semibold mb-4">Electrosystems</h2>
+      <p className="text-gray-400">
+        Building hybrid solar & wind systems for a sustainable future.
+      </p>
+    </div>
 
+    {/* Navigation Links */}
+    <div>
+      <h3 className="text-xl font-semibold mb-4">Pages</h3>
+      <ul className="space-y-2 text-gray-300">
+        <li><a href="/" className="hover:text-white">Homepage</a></li>
+        <li><a href="/learn-more" className="hover:text-white">Learn More</a></li>
+        <li><a href="/custom-system" className="hover:text-white">Custom System</a></li>
+        <li><a href="/login" className="hover:text-white">Login</a></li>
+      </ul>
+    </div>
+
+    {/* Social Icons */}
+    <div>
+      <h3 className="text-xl font-semibold mb-4">Follow Us</h3>
+      <div className="flex space-x-5">
+        <a href="#" className="hover:text-white text-gray-300 text-2xl">
+          <i className="fab fa-facebook"></i>
+        </a>
+        <a href="#" className="hover:text-white text-gray-300 text-2xl">
+          <GrLinkedinOption/>
+        </a>
+        <a href="#" className="hover:text-white text-gray-300 text-2xl">
+          <ImGithub/>
+        </a>
+        <a href="#" className="text-white text-2xl">
+          <BsInstagram/>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div className="text-center text-gray-600 text-sm">
+    © {new Date().getFullYear()} ELECTROSYTEMS. All rights reserved.
+  </div>
     </footer>
 
 
 
 
-        
-        
-
-      
-          
-
-
-        
-      
-    
-      
       
   
   </div>
