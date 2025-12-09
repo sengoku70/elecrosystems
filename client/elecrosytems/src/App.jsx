@@ -6,7 +6,7 @@ import Homepage from "./components/Homepage";
 import Infopage from "./components/Infopage";
 import Login from './components/Login';
 import Customcircuit from './components/Customcircuit'
-import Community from './components/Community';
+import Community from './components/Community.jsx';
 import Cookies from "js-cookie"
 const API_URL = "http://localhost:5000";
 import './App.css'
@@ -18,11 +18,12 @@ function App() {
   
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [profile,setProfile] = useState("")
+
   
   
 
   useEffect(() => {
-
+  console.log("profile:",profile);
   if (!token) return; // no token → skip
 
   const getProfile = async () => {
@@ -67,8 +68,9 @@ function App() {
       
         {token ? (
         <div className='ml-auto w-fit h-fit p-2 bg-black text-white'>{profile.username}</div>
+        
         ):""} 
-        <img src='src/assets/image/Untitled.png'  className='h-[100px] ml-4 w-fit'/>
+        <img src='src/assets/image/Untitled.png'  className={`h-[100px] ${token? "ml-4": "ml-auto" }  w-fit`}/>
         
     </nav>
     

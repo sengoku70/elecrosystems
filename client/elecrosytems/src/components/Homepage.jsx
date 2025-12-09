@@ -3,6 +3,7 @@ import '../App.css';
 import gsap from 'gsap';
 import image from "../assets/image/image.png"
 import logo from "../assets/image/untitled.png"
+import Community from './Community';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { BsInstagram } from "react-icons/bs";
 import { GrLinkedinOption } from "react-icons/gr";
@@ -121,7 +122,7 @@ useEffect(() => {
 
       <div className='c1 w-1/5 h-[550px] mt-[100px] px-4 bg-white/40 backdrop-blur-2xl shadow-2xl'><img src="src/assets/image/battry.png" alt="" className='ml-[15%]' />
              <h1 className='hero text-[20px]'>
-              Learn how you can switch to Renewable and Go of Grid
+              Learn about modern energy storage solutions
              </h1>
       
       </div>
@@ -130,7 +131,7 @@ useEffect(() => {
 
       <div className='c2 w-1/5 h-[550px] px-4 mt-[500px] bg-white/40 backdrop-blur-2xl shadow-2xl '> <img src="src/assets/image/plant.png" alt="" className='' />
             <h1 className='hero text-[20px]'>
-              Learn how you can switch to Renewable and Go of Grid
+              Learn how using renewable options help saving environment
              </h1>
       
       </div>
@@ -168,7 +169,7 @@ useEffect(() => {
   </div>
 
     <div className=' flex flex-row justify-between items-center mt-[150px] mb-[150px] w-7/10 mx-auto'>
-        <div className='hero text-[40px] my-[100px] w-5/10 mx-auto'>SEE WAHT COMMUNITY HAS TO OFFER <br/> <NavLink className="view-details-btn text-[15px]">Go to Community Page</NavLink></div>
+        <div className='hero text-[40px] my-[100px] w-5/10 mx-auto'>SEE WAHT COMMUNITY HAS TO OFFER <br/> <NavLink to="/Community" className="view-details-btn text-[15px]">Go to Community Page</NavLink></div>
       
         <div className="h-[500px] w-[500px] bg-contain border-white/60 border-[40px] shadow-2xl bg-no-repeat bg-[url('src/assets/image/Gemini_Generated_Image_ks59lkks59lkks59.png')] "></div>
             

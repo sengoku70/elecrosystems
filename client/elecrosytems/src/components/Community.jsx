@@ -68,14 +68,14 @@ export default function Community() {
   }
 
   return (
-    <div className="community-page bg-blue-100 pb-50 bg-fixed hero min-h-screen">
+    <div className="community-page  bg-blue-100 pb-50 bg-fixed hero min-h-screen">
       <div className="p-6 max-w-8/10 mx-auto translate-y-30">
         <h1 className="text-3xl font-bold text-white bg-black w-fit p-2 mb-4">Community Systems</h1>
         <p className="text-sm text-muted-foreground mb-8">Explore renewable energy solutions from our community and modify them for your needs.</p>
 
         {error && <div className="error-message">{error}</div>}
 
-        <div className="systems-feed">
+        <div className="systems-feed w-full">
           {systems.length === 0 ? (
             <div className="no-systems">
               <p>No custom systems yet. Be the first to share!</p>
@@ -93,6 +93,15 @@ export default function Community() {
                       <h3 className="username">{system.username}</h3>
                       <p className="date">{formatDate(system.createdAt)}</p>
                     </div>
+                    <div className="system-type-badge ml-auto ">
+                    <span className={`plan-badge ${system.plan}`}>
+                      {system.plan === "solarOnly"
+                        ? "☀️ Solar Only"
+                        : system.plan === "windOnly"
+                        ? "💨 Wind Only"
+                        : "⚡ Mixed System"}
+                    </span>
+                  </div>
                   </div>
                 </div>
 
@@ -104,18 +113,10 @@ export default function Community() {
                 )}
 
                 {/* Card Content */}
-                <div className="card-content">
-                  <div className="system-type-badge">
-                    <span className={`plan-badge ${system.plan}`}>
-                      {system.plan === "solarOnly"
-                        ? "☀️ Solar Only"
-                        : system.plan === "windOnly"
-                        ? "💨 Wind Only"
-                        : "⚡ Mixed System"}
-                    </span>
-                  </div>
+                <div className="card-content flex justify-evenly">
+                  
 
-                  <div className="system-stats">
+                  <div className="system-stats w-1/3 grid grid-cols-2">
                     <div className="stat-item">
                       <span className="stat-label">Monthly Usage</span>
                       <span className="stat-value">{system.monthlyUsage} kWh</span>
@@ -201,8 +202,8 @@ export default function Community() {
 
         {/* Modal for detailed view */}
         {selectedSystem && (
-          <div className="modal-overlay" onClick={() => setSelectedSystem(null)}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div className="modal-overlay " onClick={() => setSelectedSystem(null)}>
+            <div className="modal-content w-7/10 mt-40 " onClick={(e) => e.stopPropagation()}>
               <button
                 className="modal-close"
                 onClick={() => setSelectedSystem(null)}
