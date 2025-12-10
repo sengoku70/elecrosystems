@@ -66,10 +66,13 @@ function App() {
         )}
         <hr  className='h-[50px] w-2.5 bg-black'/>
       
-        {token ? (
-        <div className='ml-auto w-fit h-fit p-2 bg-black text-white'>{profile.username}</div>
-        
-        ):""} 
+        {token && (
+          <div className="ml-auto p-2 
+                          bg-linear-to-r from-[#6AA8FF] to-[#7B3DE3] 
+                          text-white flex items-center justify-center">
+            {profile.username}
+          </div>
+)}
         <img src='src/assets/image/Untitled.png'  className={`h-[100px] ${token? "ml-4": "ml-auto" }  w-fit`}/>
         
     </nav>

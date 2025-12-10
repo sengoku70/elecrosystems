@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./community.css";
+import Mysystem from "./Mysystem.jsx";
 
 // Custom Systems page
 // - lets user enter monthly usage (kWh)
@@ -196,6 +197,13 @@ export default function CustomSystemsPage() {
       }
 
       const data = await res.json();
+      // Dispatch a global event so other components (like Mysystem) can update immediately
+      try {
+        const savedSystem = data.system || data;
+        window.dispatchEvent(new CustomEvent("customSystemSaved", { detail: savedSystem }));
+      } catch (e) {
+        console.warn("Failed to dispatch customSystemSaved event", e);
+      }
       setMessage({ type: "success", text: "System saved successfully." });
       console.log("saved:", data);
     } catch (err) {
@@ -216,10 +224,10 @@ export default function CustomSystemsPage() {
   }
 
   return (
-    <div className="bg-blue-100 pb-50 hero">
+    <div className="bg-blue-100 pb-50 hero bg-fixed thicc">
     <div className="p-6 max-w-8/10 mx-auto translate-y-30">
       <h1 className="text-3xl font-bold text-white bg-black w-fit p-2 mb-4">Custom Systems</h1>
-      <p className="mb-6 text-sm text-muted-foreground">Build a hybrid solar + wind recommendation to reduce dependency on the grid. Fill inputs, pick brands, and submit to save.</p>
+      <p className="mb-6 text-md text-muted-foreground">Build a hybrid solar + wind recommendation to reduce dependency on the grid. Fill inputs, pick brands, and submit to save.</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 bg-white/60 shadow-2xl gap-6">
         <div className="p-4  rounded-lg">
@@ -294,6 +302,7 @@ export default function CustomSystemsPage() {
 
       <div className="mt-8 text-xs text-muted-foreground">Notes: Estimates use simplified assumptions (panel wattage × avg sun hours, turbine rated power × capacity factor). Adjust inputs for your local climate and consult a certified installer for precise design and permitting.</div>
     </div>
+    <Mysystem/>
     </div>
   );
 }
@@ -314,6 +323,8 @@ function PlanCard({ title, counts, costs, onSubmit, submitting }) {
       <button onClick={onSubmit} disabled={submitting} className="mt-2 px-3 py-2 view-details-btn rounded border bg-black text-white w-full">
         {submitting ? "Saving..." : "Choose this plan & Save"}
       </button>
+
+      
     </div>
   );
 }

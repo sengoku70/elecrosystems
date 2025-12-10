@@ -12,6 +12,7 @@ const Login = ({ token,setToken, setProfile,profile }) => {
   //const [profile, setProfile] = useState(null);
   const [sign,setsign] = useState(true);
   const navigate = useNavigate();
+  
 
 //   console.log(token);
   // Signup
@@ -31,6 +32,7 @@ const Login = ({ token,setToken, setProfile,profile }) => {
       const res = await axios.post(`${API_URL}/auth/login`, { username, password });
       localStorage.setItem("token", res.data.token);
       setToken(res.data.token);
+      
       setMessage("Login successful!");
       navigate("/");
       

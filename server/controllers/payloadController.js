@@ -93,4 +93,37 @@ exports.getCustomSystemById = async (req, res) => {
   }
 };
 
+// Get systems for the authenticated user
+exports.getMySystems = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const systems = await CustomSystem.find({ userId }).sort({ createdAt: -1 });
+    res.json({ message: "Retrieved my systems", systems });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to fetch my systems" });
+  }
+};
+
+// Delete a custom system (authenticated user must own it)
+exports.deleteCustomSystem = async (req, res) => {
+  try {
+    const { systemId } = req.params;
+    const userId = req.user.id;
+
+    const system = await CustomSystem.findById(systemId);
+    if (!system) return res.status(404).json({ error: "System not found" });
+    if (String(system.userId) !== String(userId)) return res.status(403).json({ error: "Not authorized" });
+
+    await CustomSystem.findByIdAndDelete(systemId);
+    // remove reference from user
+    await User.findByIdAndUpdate(userId, { $pull: { customSystems: systemId } });
+
+    res.json({ message: "System deleted" });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Failed to delete system" });
+  }
+};
+
 

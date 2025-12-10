@@ -571,3 +571,29 @@
     font-size: 0.85rem;
   }
 }
+
+/* Compact modifier: smaller cards for denser lists (used by Mysystem) */
+.compact .systems-feed {
+  gap: 14px;
+}
+
+.compact .system-card {
+  border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+}
+
+.compact .card-header { padding: 12px; }
+.compact .user-avatar { width: 36px; height: 36px; font-size: 1rem; }
+.compact .card-image { height: 160px; }
+.compact .card-content { padding: 12px; }
+.compact .system-stats { gap: 10px; padding: 12px; margin-bottom: 12px; }
+.compact .stat-value { font-size: 1.05rem; }
+.compact .equipment-item { padding: 10px; gap: 10px; }
+.compact .equipment-emoji { font-size: 1.4rem; min-width: 36px; }
+.compact .equipment-name { font-size: 0.9rem; }
+.compact .equipment-detail { font-size: 0.78rem; }
+.compact .card-footer { padding: 10px 12px; }
+.compact .view-details-btn, .compact .modify-btn { padding: 8px 10px; font-size: 0.85rem; }
+
+.compact .no-systems { padding: 30px 12px; }
+

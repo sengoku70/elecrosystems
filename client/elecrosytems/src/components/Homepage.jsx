@@ -19,22 +19,30 @@ useEffect(() => {
       scrollTrigger: {
         trigger: ".herotext",
         start: "top 20%",
+        end: "bottom top",
         //markers: true,
         scrub:2,
       },
-      scaleX:.9,
-      scaleY:.9,
-      marginLeft:"-55%"
+      scaleX:.12,
+      scaleY:.12,
+      marginLeft:"47.7%",
+      top:"24px",
+      zIndex:40
     });
     gsap.to(".herotext", {
       scrollTrigger: {
         trigger: ".herotext",
-        start: "top 20%",
-        //markers: true,
+        start: "bottom 50%",
+        end: "bottom 40%",
+        markers: true,
         scrub:true,
+        onEnter: () => {
+          document.querySelector(".herotext").textContent = "ELECTROSYTEMS";
+        }
       },
-      position : "inline",
-      zIndex:10
+      fontWeight:900,
+      
+      
     });
 
     gsap.to(".homepage", {
@@ -62,7 +70,7 @@ useEffect(() => {
         trigger: ".hr1",
         start: "top bottom",
         end:"bottom 50%",
-        markers: true,
+        //markers: true,
         scrub:true,
       },
       width: "100%"
@@ -93,8 +101,8 @@ useEffect(() => {
     
     <div className='hero h-screen w-full text-[130px] text-center'>
       
-        <h1 className='herotext mt-80 absolute z-35 left-[10%]'>MAKING IT POSSIBLE</h1>
-        <h4 className='absolute w-[410px] z-10 bottom-0 text-[15px] text-left'>we invison to provide people with innovation that can make you go off grid , with cutting edge tecnology we are tranforming lives and Earth,Renewable energy is changing lives, giving people the freedom to choose better, greener, and more independent sources of power. From solar rooftops to wind micro-turbines, from off-grid cabins to eco-smart homes—renewable technologies are not just an alternative anymore; they are becoming the new standard.</h4>
+        <h1 className='bitcount mt-80 absolute z-20 text-center herotext w-screen'>MAKING IT POSSIBLE</h1>
+        <h4 className='absolute w-[410px] z-10 bottom-0 opacity-0 text-[15px] text-left'>we invison to provide people with innovation that can make you go off grid , with cutting edge tecnology we are tranforming lives and Earth,Renewable energy is changing lives, giving people the freedom to choose better, greener, and more independent sources of power. From solar rooftops to wind micro-turbines, from off-grid cabins to eco-smart homes—renewable technologies are not just an alternative anymore; they are becoming the new standard.</h4>
       
       
         <div  className={`ringbox z-1 fixed left-[35%] top-[140px]`}>
@@ -104,7 +112,7 @@ useEffect(() => {
         <div className={`ringg r4 border-90 border-blue-500/50 translate-y-[20px] `}></div>
         <div className={`ringg r5 border-30 border-white/60 translate-x-[20px]} `}></div>
         </div>
-        <div className='text-[40px] absolute rotate-270 -right-40 top-50'><span className='h2side bg-black absolute w-[10px] h-full mr-10'> </span> ELECTROSYTEMS</div>
+        <div className='text-[40px] w-screen text-center opacity-0 h-fit '><span className='h2side bg-black w-[10px] mr-10'> </span> ELECTROSYTEMS</div>
         
     </div>
 
@@ -169,7 +177,7 @@ useEffect(() => {
   </div>
 
     <div className=' flex flex-row justify-between items-center mt-[150px] mb-[150px] w-7/10 mx-auto'>
-        <div className='hero text-[40px] my-[100px] w-5/10 mx-auto'>SEE WAHT COMMUNITY HAS TO OFFER <br/> <NavLink to="/Community" className="view-details-btn text-[15px]">Go to Community Page</NavLink></div>
+        <div className='hero text-[40px] my-[100px] w-5/10 mx-auto'>SEE WHAT COMMUNITY HAS TO OFFER <br/> <NavLink to="/Community" className="view-details-btn text-[15px]">Go to Community Page</NavLink></div>
       
         <div className="h-[500px] w-[500px] bg-contain border-white/60 border-[40px] shadow-2xl bg-no-repeat bg-[url('src/assets/image/Gemini_Generated_Image_ks59lkks59lkks59.png')] "></div>
             
