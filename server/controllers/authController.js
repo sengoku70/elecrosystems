@@ -9,6 +9,11 @@ const signup = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
+    // Validate password length before hashing
+    if (!password || password.length < 8) {
+      return res.status(400).json({ error: "Password must be at least 8 characters long" });
+    }
+
     // check by username or email
     const existingByUsername = username ? await User.findOne({ username }) : null;
     const existingByEmail = email ? await User.findOne({ email }) : null;

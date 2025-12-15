@@ -10,6 +10,7 @@ const Login = ({ token,setToken, setProfile,profile }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   //const [profile, setProfile] = useState(null);
   const [sign,setsign] = useState(true);
   const navigate = useNavigate();
@@ -19,11 +20,23 @@ const Login = ({ token,setToken, setProfile,profile }) => {
 // Signup
   const signup = async () => {
     try {
+      // client-side validation for password length
+      if (!password || password.length < 8) {
+        setPasswordError("Password must be at least 8 characters long");
+        return;
+      }
+
       await axios.post(`${API_URL}/auth/signup`, { username, email, password });
+      setPasswordError("");
       setMessage("Signup successful! Now login.");
-      setsign(login);
+      setsign(false);
     } catch (err) {
-      setMessage(err.response?.data?.error || "Signup failed");
+      const errMsg = err.response?.data?.error || "Signup failed";
+      if (errMsg.toLowerCase().includes('password')) {
+        setPasswordError(errMsg);
+      } else {
+        setMessage(errMsg);
+      }
     }
   };
 
@@ -95,10 +108,10 @@ const Login = ({ token,setToken, setProfile,profile }) => {
           type="password"
           placeholder="Password"
           value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => { setPassword(e.target.value); setPasswordError(""); setMessage(""); }}
           className="w-full p-3 h-12 border border-black/20 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black/40"
         />
-
+        {passwordError && <p className="text-red-600 text-sm">{passwordError}</p>}
 
         <button
           onClick={sign?signup:login}
