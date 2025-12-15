@@ -86,7 +86,7 @@ const Login = ({ token,setToken, setProfile,profile }) => {
         />
 
         <input
-          placeholder="Email (optional - used for login or signup)"
+          placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           className="w-full px-3 h-12 rounded-md border border-black/20 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black/40"

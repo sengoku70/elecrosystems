@@ -147,7 +147,7 @@ export default function Community() {
                           <div>
                             <p className="equipment-name">Solar Panel</p>
                             <p className="equipment-detail">
-                              {system.selectedSolar.brand} {system.selectedSolar.model}
+                               {system.selectedSolar.model}
                             </p>
                             <p className="equipment-detail">
                               {system.selectedSolar.watt}W • Qty: {system.counts?.solarCount}
@@ -161,7 +161,7 @@ export default function Community() {
                           <div>
                             <p className="equipment-name">Wind Turbine</p>
                             <p className="equipment-detail">
-                              {system.selectedWind.brand} {system.selectedWind.model}
+                             {system.selectedWind.model}
                             </p>
                             <p className="equipment-detail">
                               {system.selectedWind.kw}kW • Qty: {system.counts?.windCount}

@@ -41,8 +41,7 @@ useEffect(() => {
         }
       },
       fontWeight:900,
-      //backgroundImage: "linear-gradient(90deg, #6AA8FF, #7B3DE3)",
-      backgroundImage: "url('https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+      backgroundImage: "linear-gradient(90deg, #6AA8FF, #7B3DE3,green)",
       webkitTextFillColor:"transparent",
       webkitBackgroundClip:"text",
       backgroundClip:"text",
@@ -133,16 +132,17 @@ useEffect(() => {
 
 
       <div className='c1 w-1/5 h-[550px] mt-[100px] px-4 bg-white/40 backdrop-blur-2xl shadow-2xl'><img src="src/assets/image/battry.png" alt="" className='ml-[15%]' />
-             <h1 className='hero text-[20px]'>
+             <h1 className='hero text-[20px] mx-auto'>
               Learn about modern energy storage solutions
              </h1>
+             <NavLink></NavLink>
       
       </div>
       
       <span className="h-[400px] bg-black w-[10px]"></span>
 
       <div className='c2 w-1/5 h-[550px] px-4 mt-[500px] bg-white/40 backdrop-blur-2xl shadow-2xl '> <img src="src/assets/image/plant.png" alt="" className='' />
-            <h1 className='hero text-[20px]'>
+            <h1 className='hero text-[20px] mx-auto'>
               Learn how using renewable options help saving environment
              </h1>
       
@@ -151,7 +151,7 @@ useEffect(() => {
       <span className="h-[400px] bg-black w-[10px]"></span>
 
       <div className='c3 w-1/5 h-[550px] px-4 mt-[1000px] bg-white/40 backdrop-blur-2xl shadow-2xl '><img src="src/assets/image/house.png" alt="" className='' />
-          <h1 className='hero text-[20px]'>
+          <h1 className='hero text-[20px] mx-auto'>
               Learn how you can switch to Renewable and Go of Grid
              </h1>
       </div>
@@ -186,7 +186,7 @@ useEffect(() => {
     <div className=' flex flex-row justify-between items-center mt-[150px] mb-[150px] w-7/10 mx-auto'>
         <div className='hero text-[40px] my-[100px] w-5/10 mx-auto'>SEE WHAT COMMUNITY HAS TO OFFER <br/> <NavLink to="/Community" className="view-details-btn text-[15px]">Go to Community Page</NavLink></div>
       
-        <div className="h-[500px] w-[500px] bg-contain border-white/60 border-[40px] shadow-2xl bg-no-repeat bg-[url('src/assets/image/Gemini_Generated_Image_ks59lkks59lkks59.png')] "></div>
+        <div className="h-[500px] w-[500px] bg-contain border-white/60 border-40px shadow-2xl bg-no-repeat bg-[url('src/assets/image/Gemini_Generated_Image_ks59lkks59lkks59.png')] "></div>
             
     </div>
 

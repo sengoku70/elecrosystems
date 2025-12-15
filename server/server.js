@@ -1,5 +1,5 @@
 const express = require('express')
-const bcrypt  = require ('bcryptjs')
+
 const cors = require("cors");
 const connectDB = require("./config/db");
 const authRoutes = require("./routes/authRoutes");
