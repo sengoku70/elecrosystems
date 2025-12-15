@@ -7,39 +7,39 @@ const SECRET_KEY = "mysecretkey"; // use .env in real projects
 
 const signup = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, email, password } = req.body;
 
-    const existingUser = await User.findOne({ username });
-    if (existingUser) return res.status(400).json({ error: "User already exists" });
+    // check by username or email
+    const existingByUsername = username ? await User.findOne({ username }) : null;
+    const existingByEmail = email ? await User.findOne({ email }) : null;
+    if (existingByUsername) return res.status(400).json({ error: "Username already exists" });
+    if (existingByEmail) return res.status(400).json({ error: "Email already exists" });
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, password: hashedPassword });
+    const newUser = new User({ username, email, password: hashedPassword });
     await newUser.save();
 
-    
     res.json({ message: "User registered successfully" });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Signup failed in auth controller" });
   }
 };
 
 const login = async (req, res) => {
   try {
-    const { username, password } = req.body;
+    const { username, email, password } = req.body;
 
-    const user = await User.findOne({ username });
+    const user = email ? await User.findOne({ email }) : await User.findOne({ username });
     if (!user) return res.status(401).json({ error: "User not found" });
 
     const isMatch = await bcrypt.compare(password, user.password);
-
     if (!isMatch) return res.status(401).json({ error: "Invalid credentials" });
 
-    const token = jwt.sign({ id: user._id, username: user.username }, SECRET_KEY, { expiresIn: "1h" });
-    
-  
-
+    const token = jwt.sign({ id: user._id, username: user.username, email: user.email }, SECRET_KEY, { expiresIn: "1h" });
     res.json({ token });
   } catch (err) {
+    console.error(err);
     res.status(500).json({ error: "Login failed" });
   }
 };

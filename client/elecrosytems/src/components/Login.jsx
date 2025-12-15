@@ -7,6 +7,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 const Login = ({ token,setToken, setProfile,profile }) => {
   //const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   //const [profile, setProfile] = useState(null);
@@ -15,12 +16,12 @@ const Login = ({ token,setToken, setProfile,profile }) => {
   
 
 //   console.log(token);
-  // Signup
+// Signup
   const signup = async () => {
     try {
-      await axios.post(`${API_URL}/auth/signup`, { username, password });
+      await axios.post(`${API_URL}/auth/signup`, { username, email, password });
       setMessage("Signup successful! Now login.");
-      navigate("/");
+      setsign(login);
     } catch (err) {
       setMessage(err.response?.data?.error || "Signup failed");
     }
@@ -29,7 +30,9 @@ const Login = ({ token,setToken, setProfile,profile }) => {
   // Login
   const login = async () => {
     try {
-      const res = await axios.post(`${API_URL}/auth/login`, { username, password });
+      // If email is provided, prefer email-based login, otherwise use username
+      const payload = email ? { email, password } : { username, password };
+      const res = await axios.post(`${API_URL}/auth/login`, payload);
       localStorage.setItem("token", res.data.token);
       setToken(res.data.token);
       
@@ -50,18 +53,18 @@ const Login = ({ token,setToken, setProfile,profile }) => {
   };
 
   // Get profile
-  const getProfile = async () => {
-    try {
-      const res = await axios.get(`${API_URL}/auth/profile`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setProfile(res.data.user);
-      setMessage(res.data.message);
-    } catch (err) {
+  // const getProfile = async () => {
+  //   try {
+  //     const res = await axios.get(`${API_URL}/auth/profile`, {
+  //       headers: { Authorization: `Bearer ${token}` },
+  //     });
+  //     setProfile(res.data.user);
+  //     setMessage(res.data.message);
+  //   } catch (err) {
       
-      setMessage(err.response?.data?.error || "Unauthorized");
-    }
-  };
+  //     setMessage(err.response?.data?.error || "Unauthorized");
+  //   }
+  // };
 
   return (
     
@@ -74,6 +77,7 @@ const Login = ({ token,setToken, setProfile,profile }) => {
 
     {!token ? (
       <div className="flex flex-col gap-4">
+
         <input
           placeholder="Username"
           value={username}
@@ -81,6 +85,12 @@ const Login = ({ token,setToken, setProfile,profile }) => {
           className="w-full px-3 h-12 rounded-md border border-black/20 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black/40"
         />
 
+        <input
+          placeholder="Email (optional - used for login or signup)"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          className="w-full px-3 h-12 rounded-md border border-black/20 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black/40"
+        />
         <input
           type="password"
           placeholder="Password"
@@ -115,6 +125,7 @@ const Login = ({ token,setToken, setProfile,profile }) => {
         <div className="mt-6 bg-white/50 p-4 rounded-md shadow-md border border-white/40">
         <h2 className="text-xl font-semibold mb-2">User Profile</h2>
         <p className="text-black/80">Username: {profile.username}</p>
+        {profile.email && <p className="text-black/80">Email: {profile.email}</p>}
         <p className="text-black/80">User ID: {profile._id}</p>
       </div>
 

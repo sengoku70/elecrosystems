@@ -34,15 +34,19 @@ useEffect(() => {
         trigger: ".herotext",
         start: "bottom 50%",
         end: "bottom 40%",
-        markers: true,
+        //markers: true,
         scrub:true,
         onEnter: () => {
           document.querySelector(".herotext").textContent = "ELECTROSYTEMS";
         }
       },
       fontWeight:900,
-      
-      
+      //backgroundImage: "linear-gradient(90deg, #6AA8FF, #7B3DE3)",
+      backgroundImage: "url('https://images.unsplash.com/photo-1501630834273-4b5604d2ee31?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')",
+      webkitTextFillColor:"transparent",
+      webkitBackgroundClip:"text",
+      backgroundClip:"text",
+  
     });
 
     gsap.to(".homepage", {
@@ -101,7 +105,7 @@ useEffect(() => {
     
     <div className='hero h-screen w-full text-[130px] text-center'>
       
-        <h1 className='bitcount mt-80 absolute z-20 text-center herotext w-screen'>MAKING IT POSSIBLE</h1>
+        <h1 className='bitcount mt-80 absolute z-20 text-center text-black herotext w-screen'>MAKING IT POSSIBLE</h1>
         <h4 className='absolute w-[410px] z-10 bottom-0 opacity-0 text-[15px] text-left'>we invison to provide people with innovation that can make you go off grid , with cutting edge tecnology we are tranforming lives and Earth,Renewable energy is changing lives, giving people the freedom to choose better, greener, and more independent sources of power. From solar rooftops to wind micro-turbines, from off-grid cabins to eco-smart homes—renewable technologies are not just an alternative anymore; they are becoming the new standard.</h4>
       
       
@@ -160,15 +164,18 @@ useEffect(() => {
   <div className='hr2 z-35 bg-black h-[450px] text-white shadow-2xl flex row justify-center overflow-hidden items-center mt-[100px] w-6/10 mx-auto hover:w-7/10 hover:h-[500px] duration-900'>
     <h1 className='hero text-[60px] absolute text-center w-full font-bold'>CHOOSE AMONG 300+ BRANDS</h1>
     <div className='w-[3700px] h-full flex justify-end items-center gap-4 duration-15000 translate-x-320 hover:-translate-x-280 '>
-        <div className='productcard ml-[1000px]'></div>
-        <div className='productcard'></div>
-        <div className='productcard'></div>
-        <div className='productcard'></div>
-        <div className='productcard'></div>
-        <div className='productcard'></div>
-        <div className='productcard'></div>
-        <div className='productcard'></div>
-        <div className='productcard'></div>
+        <div className='productcard ml-[1000px]'><img src="src/assets/image/vestas.png" alt="" /></div>
+
+        <div className='productcard'><img src="src/assets/image/triana.png" alt="" /></div>
+        <div className='productcard'><img src="src/assets/image/ja.png" alt="" /></div>
+        <div className='productcard'><img src="src/assets/image/minyang.jpg" alt="" /></div>
+        <div className='productcard'><img src="src/assets/image/Adobe Express - file.png" alt="" /></div>
+        <div className='productcard'><img src="src/assets/image/siemens.jpg" alt="" /></div>
+        <div className='productcard'><img src="src/assets/image/DMEG.png" alt="" /></div>
+        <div className='productcard'><img src="src/assets/image/akio.png" alt="" /></div>
+        <div className='productcard'><img src="src/assets/image/Longi.png" alt="" /></div>
+        <div className='productcard'><img src="src/assets/image/Download.png" alt="" /></div>
+      
         
     
     

@@ -43,9 +43,9 @@ export default function RenewableInfoPage() {
       {/* Section 1 */}
       <section  className="sec1 pt-5 overflow-hidden flex gap-10 justify-between items-start">
 
-        <div className="content overflow-hidden shadow-2xl h-[700px] bg-no-repeat bg-white/60 w-7/10 mx-auto ">
+        <div className="content overflow-hidden shadow-2xl h-[700px] bg-no-repeat bg-white/60 w-7/10 mx-auto border-b-10 border-black">
           <h2 className="hero text-3xl font-extrabold bg-black p-4 w-fit text-white mb-6">How a Wind Turbine Works?</h2>
-          <p className="hero text-[24px] backdrop-blur-[5px] thicc text-neutral-700 ">
+          <p className="hero text-[24px] backdrop-blur-[5px] thicc text-neutral-700 p-3">
         
 
               A wind turbine is a remarkable machine that transforms the simple movement of air into usable electricity. At first glance it may seem that the wind simply pushes the blades, but the process is far more precise and rooted in aerodynamic science. The blades of a turbine are shaped much like the wings of an aircraft, engineered to create lift rather than rely on force. When wind passes over their curved surfaces, air on one side moves faster than on the other, producing a pressure difference that causes the rotor to turn smoothly and efficiently. This allows turbines to operate even in gentle winds.
@@ -53,9 +53,9 @@ export default function RenewableInfoPage() {
                         </p>
           
         </div>
-        <div className="content w-7/10 bg-white/60 shadow-2xl h-[700px] overflow-hidden mx-auto   bg-no-repeat ">
+        <div className="content w-7/10 bg-white/60 shadow-2xl h-[700px] overflow-hidden mx-auto border-b-10  bg-no-repeat ">
             <h2 className="hero text-3xl font-extrabold bg-black p-4 w-fit text-white mb-6">How Does a Solar Panel Work?</h2>
-              <p className="hero backdrop-blur-[5px] text-[24px]">
+              <p className="hero backdrop-blur-[5px] text-[24px] thicc text-neutral-700 p-3">
 
                 A solar panel is, at its core, a device that captures sunlight and turns it into electricity, yet the process behind this transformation is both elegant and profoundly scientific. Each panel is made up of many photovoltaic (PV) cells, usually crafted from silicon, a material whose atomic structure allows it to interact with light in a unique way. When sunlight strikes the surface of a panel, it carries energy in the form of photons. These photons collide with the silicon atoms, transferring enough energy to knock electrons free from their positions. This movement of electrons creates an electric current, the fundamental building block of power generation.
           </p>
@@ -65,10 +65,11 @@ export default function RenewableInfoPage() {
         <section>
           <div className="sec2 pt-5 overflow-hidden flex gap-10 justify-between items-center">
             <div className="content w-8/10 mt-10 mx-auto">
-              <h2 className="hero text-3xl font-extrabold bg-black p-4 w-fit text-white mb-6">How Renewable Energy Affects Nature</h2>
-              <p className="hero text-[24px] backdrop-blur-[5px] leading-relaxed">
+              <h2 className="hero text-3xl font-extrabold bg-[url('https://plus.unsplash.com/premium_photo-1672419013359-3e0a2f9c039a?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')] bg-cover bg-center p-4 w-fit text-white mb-6">How Renewable Energy Affects Nature</h2>
+              <p className="hero text-[24px] backdrop-blur-[5px] leading-relaxed thicc ">
                 Renewable energy sources like solar and wind have a profoundly positive impact on our natural world. By transitioning away from fossil fuels, we significantly reduce greenhouse gas emissions that drive climate change, protecting ecosystems and wildlife from unprecedented environmental stress. These clean energy technologies produce no air or water pollution, preserving air quality for all living organisms and keeping our water sources pure. Unlike traditional power plants, renewable systems require minimal water for operation, conserving this precious resource for nature and agriculture. By choosing renewables, we honor the delicate balance of our planet's ecosystems and ensure a healthier, more sustainable future for generations to come.
               </p>
+              <img src="" alt="" />
             </div>
           </div>
         </section>
