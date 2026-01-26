@@ -80,85 +80,173 @@ const Login = ({ token,setToken, setProfile,profile }) => {
   // };
 
   return (
-    
-  <div className="h-screen hero flex items-center justify-center bg-fixed bg-green-100 px-4">
-  <div className="backdrop-blur-xl bg-white/60 shadow-xl  p-10 w-full max-w-md border border-white/30">
-    
-    <h1 className="text-3xl font-bold text-center mb-6 tracking-wide">
-      Welcome 
-    </h1>
+    <div className="min-h-screen bg-green-100 flex items-center justify-center p-4 pt-16
+ ">
+      <div className="w-full max-w-5xl bg-white/95 rounded-2xl shadow-2xl overflow-hidden flex flex-col md:flex-row h-[600px] border border-white/30">
+        {/* Left Column - Hero Section */}
+        <div className="relative md:w-1/2 bg-green-100 p-10 text-green-900 flex flex-col justify-between">
+          <div 
+            className="absolute inset-0 bg-cover bg-center opacity-70" 
+            style={{ 
+              backgroundImage: 'url(https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1172&q=80)' 
+            }}
+          ></div>
+          <div className="relative z-10">
+            <h1 className="text-4xl font-bold mb-4">Welcome to Elecrosystems</h1>
+            <p className="text-blue-100 text-lg">
+              {sign 
+                ? "Join our platform to manage your energy solutions efficiently."
+                : "Welcome back! Please sign in to continue."}
+            </p>
+          </div>
+          <div className="relative z-10">
+            <div className="h-1 w-16 bg-white/30 mb-4"></div>
+            <p className="text-blue-100 text-sm">
+              {sign 
+                ? "Already have an account?"
+                : "New to Elecrosystems?"}
+              <button 
+                onClick={() => setsign(prev => !prev)}
+                className="ml-2 font-semibold hover:underline"
+              >
+                {sign ? 'Sign in' : 'Create account'}
+              </button>
+            </p>
+          </div>
+        </div>
 
-    {!token ? (
-      <div className="flex flex-col gap-4">
+        {/* Right Column - Form */}
+        <div className="md:w-1/2 p-10 flex flex-col justify-center relative">
+          <div className="absolute top-6 right-6">
+            <div className="h-10 w-10 rounded-full bg-green-400 flex items-center justify-center text-teal-600 font-bold">E</div>
+          </div>
+          
+          <div className="max-w-md w-full mx-auto">
+            <h2 className="text-2xl font-bold text-gray-800 mb-2">
+              {sign ? 'Create Account' : 'Welcome Back'}
+            </h2>
+            <p className="text-gray-500 mb-8">
+              {sign 
+                ? 'Fill in your details to create an account'
+                : 'Sign in to access your dashboard'}
+            </p>
 
-        <input
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="w-full px-3 h-12 rounded-md border border-black/20 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black/40"
-        />
+            {!token ? (
+              <div className="space-y-5">
+                {sign && (
+                  <div className="space-y-1">
+                    <label className="text-sm font-medium text-gray-700">Username</label>
+                    <input
+                      type="text"
+                      value={username}
+                      onChange={(e) => setUsername(e.target.value)}
+                      className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-teal-400 focus:border-transparent transition duration-200"
+                      placeholder="Enter your username"
+                    />
+                  </div>
+                )}
 
-        <input
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-3 h-12 rounded-md border border-black/20 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black/40"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => { setPassword(e.target.value); setPasswordError(""); setMessage(""); }}
-          className="w-full p-3 h-12 border border-black/20 bg-white/70 focus:outline-none focus:ring-2 focus:ring-black/40"
-        />
-        {passwordError && <p className="text-red-600 text-sm">{passwordError}</p>}
+                <div className="space-y-1">
+                  <label className="text-sm font-medium text-gray-700">Email</label>
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-teal-400 focus:border-transparent transition duration-200"
+                    placeholder="your@email.com"
+                  />
+                </div>
 
-        <button
-          onClick={sign?signup:login}
-          className="w-full py-3  text-white bg-black font-semibold hover:opacity-80 transition"
-        >
-          {sign?"signup":"Login"}
-        </button>
-        <div className="flex flex-row justify-center">
-        <h1 className="w-fit">
-        {sign ? "Already have an account ? " :  "Dont have a account? "}
-        </h1>
-        <button
-            onClick={()=>setsign(prev => !prev)}
-            className="w-fit ml-2 text-blue-500"
+                <div className="space-y-1">
+                  <div className="flex justify-between items-center">
+                    <label className="text-sm font-medium text-gray-700">Password</label>
+                    {!sign && (
+                      <a href="#" className="text-sm text-pink-500 hover:text-pink-600 transition-colors duration-200">Forgot password?</a>
+                    )}
+                  </div>
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => { 
+                      setPassword(e.target.value);
+                      setPasswordError("");
+                      setMessage("");
+                    }}
+                    className={`w-full px-4 py-3 rounded-lg border ${passwordError ? 'border-red-300' : 'border-gray-200'} focus:ring-2 focus:ring-teal-400 focus:border-transparent transition duration-200`}
+                    placeholder={sign ? 'Create a password' : 'Enter your password'}
+                  />
+                  {passwordError && (
+                    <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+                  )}
+                </div>
 
-        >   
-          {sign ? " Login" :  "Signup"}
-                
-        </button>
+                <button
+                  onClick={sign ? signup : login}
+                  className="w-full py-3 px-4 bg-gradient-to-r from-pink-400 to-cyan-400 hover:from-pink-500 hover:to-cyan-500 text-white font-medium rounded-lg transition-all duration-300 transform hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2 shadow-md hover:shadow-lg"
+                >
+                  {sign ? 'Create Account' : 'Sign In'}
+                </button>
+
+                <div className="relative my-6">
+                  <div className="absolute inset-0 flex items-center">
+                    <div className="w-full border-t border-gray-200"></div>
+                  </div>
+                  <div className="relative flex justify-center text-sm">
+                    <span className="px-2 bg-white text-gray-500">
+                      {sign ? 'Already have an account?' : 'New to Elecrosystems?'}
+                    </span>
+                  </div>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setsign(prev => !prev)}
+                  className="w-full py-3 px-4 border border-indigo-100 rounded-lg font-medium text-indigo-700 hover:bg-indigo-50 transition-all duration-300 hover:border-indigo-200"
+                >
+                  {sign ? 'Sign In' : 'Create Account'}
+                </button>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                <div className="bg-gray-50 p-6 rounded-xl border border-gray-100">
+                  <h2 className="text-xl font-semibold text-gray-800 mb-4">Your Profile</h2>
+                  <div className="space-y-3">
+                    <div className="flex items-center">
+                      <span className="text-gray-600 w-24">Username:</span>
+                      <span className="font-medium text-gray-800">{profile?.username}</span>
+                    </div>
+                    {profile?.email && (
+                      <div className="flex items-center">
+                        <span className="text-gray-600 w-24">Email:</span>
+                        <span className="font-medium text-gray-800">{profile.email}</span>
+                      </div>
+                    )}
+                    <div className="flex items-center">
+                      <span className="text-gray-600 w-24">User ID:</span>
+                      <span className="font-mono text-sm text-gray-600">{profile?._id}</span>
+                    </div>
+                  </div>
+                </div>
+
+                <NavLink
+                  to="/"
+                  onClick={logout}
+                  className="block w-full py-3 px-4 text-center bg-red-50 text-red-600 font-medium rounded-lg border border-red-100 hover:bg-red-100 transition duration-200"
+                >
+                  Sign Out
+                </NavLink>
+              </div>
+            )}
+
+            {message && (
+              <div className={`mt-4 p-3 rounded-lg text-sm ${message.includes('success') ? 'bg-emerald-50 text-emerald-700 border border-emerald-100' : 'bg-rose-50 text-rose-700 border border-rose-100'}`}>
+                {message}
+              </div>
+            )}
+          </div>
         </div>
       </div>
-    ) : (
-      <div className="flex flex-col gap-4">
-        <div className="mt-6 bg-white/50 p-4 rounded-md shadow-md border border-white/40">
-        <h2 className="text-xl font-semibold mb-2">User Profile</h2>
-        <p className="text-black/80">Username: {profile.username}</p>
-        {profile.email && <p className="text-black/80">Email: {profile.email}</p>}
-        <p className="text-black/80">User ID: {profile._id}</p>
-      </div>
-
-        <NavLink to={"/"}
-          onClick={logout}
-
-          className="w-full py-3 text-center  bg-red-600 text-white font-semibold hover:bg-red-700 transition"
-        >
-          Logout
-        </NavLink>
-      </div>
-    )}
-
-    {message && (
-      <p className="mt-6 text-center text-black/70 font-medium">{message}</p>
-    )}
-
-    
-  </div>
-</div>
+    </div>
 
   );
 }
